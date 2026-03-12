@@ -3,9 +3,11 @@ package com.terabyte.networkmonitor.ui.navigation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -32,13 +34,17 @@ fun BottomNavBar(navController: NavHostController) {
                             painter = painterResource(item.iconFilled),
                             contentDescription = ""
                         )
-                    }
-                    else {
+                    } else {
                         Icon(
                             painter = painterResource(item.icon),
                             contentDescription = ""
                         )
                     }
+                },
+                label = {
+                    Text(
+                        text = stringResource(item.title)
+                    )
                 },
                 onClick = {
                     if (currentRoute != item.route) {
@@ -52,6 +58,13 @@ fun BottomNavBar(navController: NavHostController) {
                                 //in case we go back to the screen we deleted from
                                 //back stack before, the state of such screen will be
                                 //restored.
+                                //
+                                //screen state is NOT about our remember{} blocks inside
+                                //composable-screen-fun.
+                                //it is about internal screen state, like scroll position
+                                //inside lazyColumn
+                                //
+                                //so, only navigation state will be saved.
                                 saveState = true
                             }
                             //so, we deleted all the screens above the startDestinationId
