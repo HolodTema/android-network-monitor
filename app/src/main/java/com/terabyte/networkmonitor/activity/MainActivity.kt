@@ -1,4 +1,4 @@
-package com.terabyte.networkmonitor
+package com.terabyte.networkmonitor.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
