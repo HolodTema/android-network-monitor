@@ -1,0 +1,30 @@
+name: Build Check
+
+on:
+  push:
+    # check every commit in main branch of successful Gradle build.
+    branches: [ "main" ]  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+      
+      - name: Build project
+        run: ./gradlew build
+      
+      - name: Build successful
+        if: success()
+        run: echo "Build successful!"
