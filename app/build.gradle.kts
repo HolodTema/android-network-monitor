@@ -41,6 +41,12 @@ android {
 }
 
 dependencies {
+    //Navigation component
+    implementation(libs.androidx.navigation.compose)
+
+    //ViewModel for Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    
     //Pure dagger with codegen
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
