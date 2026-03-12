@@ -12,5 +12,8 @@ kotlin {
     }
 }
 dependencies {
+    //pure Dagger without codegen
+    implementation(libs.dagger)
+
     implementation(libs.kotlinx.coroutines.core)
 }
